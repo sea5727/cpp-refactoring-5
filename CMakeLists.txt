@@ -15,7 +15,7 @@ if(Boost_FOUND)
     link_directories(/usr/local/lib)
 endif()
 
-add_executable(cpp-refactoring-5 main.cpp ApplicationTcpSession.cpp Message.cpp)
+add_executable(cpp-refactoring-5 main.cpp ApplicationTcpSession.cpp Handler.cpp)
 target_link_libraries(cpp-refactoring-5 ${Boost_LIBRARIES} pthread)
 
 

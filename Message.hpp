@@ -17,99 +17,57 @@ class Handler;
 class Message
 {
 public:
-    // int a;
-    // int b;
-    // int c;
-    // short d;
-    // char e;
-    // char f[3];
+
 public:
-    virtual void print();
+    virtual void print() { std::cout << "this is message" << std::endl; }
     void dispatch(ActualHandler1 & handler)
     {
         std::cout << "this is dispatch of Message" << std::endl;
-        // virtualTest();
 
-        // dispatchImpl(handler);
+        dispatchImpl(handler);
     }
 protected:
-    void virtualTest()
+    virtual void virtualTest()
     {
         std::cout << "this is virtualTest of Message" << std::endl;
     }
-    // virtual void dispatchImpl(Handler & handler);
-// public:
-//     void ntoh()
-//     {
-//         a = ntohl(a);
-//         b = ntohl(b);
-//         c = ntohl(c);
-//         d = ntohs(d);
-//     }
-//     void hton()
-//     {
-//         a = htonl(a);
-//         b = htonl(b);
-//         c = htonl(c);
-//         d = htons(d);
-//     }
-//     void get_to_buffer(char *buffer , size_t size)
-//     {
-//         memcpy(buffer, this, size);
-//     }
-//     void set_from_buffer(char * buffer, size_t size)
-//     {
-//         memcpy(this, buffer, size);
-//     }
+    virtual void dispatchImpl(Handler & handler) = 0;
     
 };
-class TestMessage : public Message
+
+
+template <typename TDerived>
+class MessageBase : public Message
+{
+protected:
+    virtual void dispatchImpl(Handler& handler) override
+    {
+        std::cout << "this is dispatchImpl of MessageBase" << std::endl;
+        handler.handle(static_cast<TDerived&>(*this)); // 자식 class로 변경
+    }
+};
+
+class ActualMessage1 : public MessageBase<ActualMessage1>
 {
 public:
-    void print() override;
-    
-    void virtualTest()
-    {
-        std::cout << "this is virtualTest of TestMessage" << std::endl;
-    }
-    void dispatchImpl(Handler & handler)
-    {
-        std::cout << "this is dispatchImpl.. of TestMessage" << std::endl;
-    }
+    int a;
+    int b;
+    int c;
+    short d;
+    char e;
+    char f[3];
 };
 
 
-// template <typename TDerived>
-// class MessageBase : public Message
-// {
-// protected:
-//     virtual void dispatchImpl(Handler& handler) override
-//     {
-//         std::cout << "this is dispatchImpl of MessageBase" << std::endl;
-//         handler.handle(static_cast<TDerived&>(*this)); 
-//     }
-// };
-
-// class ActualMessage1 : public Message //: public MessageBase<ActualMessage1>
-// {
-// protected:
-//     virtual void dispatchImpl(Handler & handler) override
-//     {
-//         std::cout << "this is dispatchImpl of ActualMessage1" << std::endl;
-//         handler.handle(*this);
-//     }
-// };
-
-
-// class ActualMessage2 : public Message// : public MessageBase<ActualMessage2>
-// {
-// protected:
-//     virtual void dispatchImpl(Handler & handler) override
-//     {
-//         std::cout << "this is dispatchImpl of ActualMessage1" << std::endl;
-//         // handler.handle(*this);
-//     }
-// };
+class ActualMessage2 : public MessageBase<ActualMessage2>
+{
+protected:
+    // virtual void dispatchImpl(Handler & handler) override
+    // {
+    //     std::cout << "this is dispatchImpl of ActualMessage1" << std::endl;
+    //     // handler.handle(*this);
+    // }
+};
 
 
 

@@ -43,7 +43,7 @@
 // #include "TcpConnectorSession.hpp"
 // #include "TcpConnectorSessionChild.hpp"
 
-extern ProcessManager pm;
+// extern ProcessManager pm;
 
 
 

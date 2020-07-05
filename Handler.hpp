@@ -20,10 +20,8 @@ public:
 class ActualHandler1 : public Handler
 {
 public:
-    virtual void handle(ActualMessage1 & msg) override
-    {
-        std::cout << "this is ActualMessage1 msg handle of ActualHandler1" << std::endl;
-    }
+    virtual void handle(ActualMessage1 & msg) override;
+        // std::cout << "this is ActualMessage1 msg handle of ActualHandler1" << std::endl;
     virtual void handle(ActualMessage2 & msg) override
     {
         std::cout << "this is ActualMessage2 msg handle of ActualHandler1" << std::endl;
