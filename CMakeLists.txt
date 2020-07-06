@@ -7,7 +7,7 @@ set(CMAKE_CXX_STANDARD_REQUIRED ON)
 include(CTest)
 enable_testing()
 
-list(APPEND CMAKE_MODULE_PATH "/usr/local/lib/cmake")
+list(APPEND CMAKE_MODULE_PATH "/usr/local/boost-1.73.0/lib/cmake/")
 find_package(Boost 1.73 REQUIRED COMPONENTS program_options thread)
 if(Boost_FOUND)
     message(Boost Found! ${Boost_LIBRARIES})
@@ -15,7 +15,7 @@ if(Boost_FOUND)
     link_directories(/usr/local/lib)
 endif()
 
-add_executable(cpp-refactoring-5 main.cpp ApplicationTcpSession.cpp)
+add_executable(cpp-refactoring-5 main.cpp ApplicationTcpSession.cpp Message.cpp)
 target_link_libraries(cpp-refactoring-5 ${Boost_LIBRARIES} pthread)
 
 

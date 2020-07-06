@@ -3,6 +3,27 @@
 ProcessManager pm;
 
 int main(int, char**) {
+
+    // auto msg = std::shared_ptr<ActualMessage1>();
+    // ActualHandler1 handler1;
+    // std::cout << "sizeof. " <<sizeof(ActualHandler1) << std::endl;
+    // handler1.handle(*(msg.get()));
+    // std::cout << "msg->dispatch start " << std::endl;
+    // msg->dispatch(handler1);
+
+
+
+    auto msg = std::shared_ptr<TestMessage>();
+    msg->print();
+    // ActualHandler1 handler1;
+    // std::cout << "msg->dispatch start " << std::endl;
+    // msg->dispatch(handler1);
+
+
+
+    return 0;
+
+
     TcpAcceptor<ApplicationTcpSession> tmf;
     SyncWorker worker(2);
 

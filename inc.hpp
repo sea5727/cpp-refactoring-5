@@ -38,6 +38,8 @@
 #include "TcpConnector.hpp"
 #include "ApplicationTcpSession.hpp"
 
+#include "Handler.hpp"
+#include "Message.hpp"
 // #include "TcpConnectorSession.hpp"
 // #include "TcpConnectorSessionChild.hpp"
 
